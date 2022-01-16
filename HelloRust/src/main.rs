@@ -82,5 +82,6 @@ fn main() {
     x = 42;
     println!("X : {}", x);
 
-    conditionals::if_statement();
+    conditionals::if_statements();
+    conditionals::while_loop_statements();
 }
