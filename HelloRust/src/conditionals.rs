@@ -1,4 +1,4 @@
-pub fn if_statement() {
+pub fn if_statements() {
     let temp = 0;
     if temp > 30 {
         println!("really hot outside");
@@ -21,4 +21,20 @@ pub fn if_statement() {
     }
     else {"normal"}
     );
+}
+
+pub fn while_loop_statements() {
+    let mut x = 1;
+    while x< 1000 {
+        x *= 2;
+        if x == 64 {continue;}
+        println!("x is {}", x);
+    }
+    let mut y: u32 = 1;
+    loop // while true
+    {
+        y *= 2;
+        println!("y = {}", y);
+        if y == 1<<10 {break;}
+    }
 }
