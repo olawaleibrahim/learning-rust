@@ -1,5 +1,8 @@
 mod sh;
 mod conditionals;
+mod structs;
+mod enumerations;
+
 #[allow(dead_code)]
 #[allow(unused_variables)]
 
@@ -76,12 +79,18 @@ fn main() {
     // sh::stack_and_heap();
     // operators();
     // data_types();
+    /*
     let mut x: i32 = 3;
     x = double_value(x);
     println!("X : {}", x);
     x = 42;
-    println!("X : {}", x);
+    println!("X : {}", x); */
 
-    conditionals::if_statements();
-    conditionals::while_loop_statements();
+    // conditionals::if_statements();
+    // conditionals::while_loop_statements();
+    // conditionals::for_loops();
+    // conditionals::match_statement();
+    structs::structures();
+    enumerations::enums()
+
 }

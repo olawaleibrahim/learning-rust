@@ -38,3 +38,26 @@ pub fn while_loop_statements() {
         if y == 1<<10 {break;}
     }
 }
+
+pub fn for_loops() {
+    for x in 1..11 {
+        if x==7 {continue;}
+        println!("{}", x)
+    }
+    for (pos, x) in (30..44).enumerate() {
+        println!("{} has position {} in range", x, pos)
+    }
+}
+
+pub fn match_statement(){
+    let country_code = 999;
+
+    let country = match country_code {
+        234 => "Nigeria",
+        44 => "UK",
+        7 => "Russia",
+        1..=1000 => "unknown",
+        _ => "invalid"
+    };
+    println!("the  country with code {} is {}", country_code, country)
+}
