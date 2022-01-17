@@ -74,6 +74,21 @@ fn data_types() {
 fn double_value(v: i32) -> i32 {
     v*2
 }
+fn if_let() {
+    let x = 5.0;
+    let y = 00.0;
+
+    let result =
+        if y!=0.0 { Some(x/y)}  else { None } ;
+    match result {
+        Some(z) => println!("{}/{}={}", x,y, z),
+        None => println!("{}/{}={} (cannot divide by zero)", x,y, "infinity"),
+    }
+    if let Some(z) = result {
+        println!("result = {}", z)
+    }
+
+}
 
 fn main() {
     // sh::stack_and_heap();
@@ -91,6 +106,8 @@ fn main() {
     // conditionals::for_loops();
     // conditionals::match_statement();
     structs::structures();
-    enumerations::enums()
+    enumerations::enums(); enumerations::unions();
+    if_let();
+    structs::arrays();
 
 }
