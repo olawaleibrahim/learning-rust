@@ -2,6 +2,7 @@ mod sh;
 mod conditionals;
 mod structs;
 mod enumerations;
+mod pm;
 
 #[allow(dead_code)]
 #[allow(unused_variables)]
@@ -110,5 +111,7 @@ fn main() {
     // if_let();
     // structs::arrays();
     structs::tuples();
+
+    pm::pattern_matching();
 
 }
