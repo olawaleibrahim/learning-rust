@@ -21,8 +21,37 @@ pub fn enums() {
         Color::RGBColor(0, 0, 0)
         | Color::CmykColor{cyan:_,magenta:_,yellow:_,black:255} => println!("black"),
         Color::RGBColor(ab, bc, cd) => println!("rgb({},{},{})", ab, bc, cd),
-        Color::CmykColor{cyan,magenta,yellow,black} => println!("cymk {},{},{},{}",
-                                                                            cyan, magenta, yellow, black);
+        //Color::CmykColor{cyan,magenta,yellow,black} => println!("cmyk ({},{},{},{})",
+                                                                //cyan, magenta, yellow, black);
         _ => ()
     }
+}
+
+union IntOrFloat{
+    i: i32,
+    f: f32
+}
+
+fn process_value(iof:IntOrFloat)
+{
+    unsafe {
+        match iof {
+            IntOrFloat{i:42} => {
+                println!("meaning of life value")
+            }
+            IntOrFloat{f} => {
+                println!("value = {}", f);
+            }
+        }
+    }
+}
+
+pub fn unions(){
+    let mut iof = IntOrFloat{i:123};
+    iof.i = 234;
+
+    let value = unsafe {iof.i};
+    println!("iof.i:{}", value);
+
+    process_value(IntOrFloat{f:4.0});
 }

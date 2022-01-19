@@ -23,7 +23,10 @@ pub fn structures() {
         start: p1, end: p2
     };
 }
-
+fn use_slice(slice:&mut[i32]) {
+    println!("first element in array is {}, length of array is {}", slice[0], slice.len());
+    slice[0] = 4321;
+}
 pub fn arrays()
 {
     // 1-D array
@@ -54,4 +57,29 @@ pub fn arrays()
             }
         }
     }
+    let mut data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    use_slice(&mut data[2..6]);
+    //use_slice(&mut data);
+    println!("{:?}", data);
+}
+
+fn sum_and_product(x:i32, y:i32) -> (i32, i32) {
+    (x+y, x*y)
+}
+pub fn tuples() {
+    let x = 5;
+    let y= 6;
+    let ret = sum_and_product(x, y);
+
+    println!("ret = {:?}", ret);
+    println!("{0}+{1}={2}, {0}*{1}={3}", x, y, ret.0, ret.1);
+
+    // destructuring
+    let (a,b) = ret;
+    println!("a = {}, b = {}", a, b);
+
+    let ret2 = sum_and_product(12, 3);
+    let combined = (ret, ret2);
+    println!("Debug output: {:?}", combined);
+    println!("Last item in struct: {}", (combined.1).1);
 }

@@ -107,7 +107,8 @@ fn main() {
     // conditionals::match_statement();
     structs::structures();
     enumerations::enums(); enumerations::unions();
-    if_let();
-    structs::arrays();
+    // if_let();
+    // structs::arrays();
+    structs::tuples();
 
 }
