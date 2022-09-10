@@ -1,4 +1,5 @@
 use std::mem;
+use std::collections::HashMap;
 use crate::data_structures::Color::CmykColor;
 
 struct Point {
@@ -125,6 +126,7 @@ pub fn arrays() {
             };
         }
     }
+    for x in &mtx { println!("{:?}", x); }
 }
 
 fn use_slice(slice: &mut[i32]) {
@@ -182,7 +184,6 @@ struct Line1<T,V,W> {
     end: Point2<W,V>
 }
 
-
 pub fn generics() {
     let a: Point1<u8> = Point1 { x: 0, y: 0};
     let b: Point2<f64, f32> = Point2 { x: 1.0, y: 3.4};
@@ -195,6 +196,7 @@ pub fn vectors() {
     a.push(1);
     a.push(2);
     a.push(3);
+    a.push(333);
 
     println!("{:?}", a);
 
@@ -206,4 +208,35 @@ pub fn vectors() {
         Some(x) => println!("a[{}] = {}", idx, x),
         None => println!("error, no such element")
     }
+    for x in &a { println!("{}", x); }
+    a.push(44);
+    println!("{:?}", a);
+    let last_elem = a.pop();
+    println!("last element in vector = {:?}, new vector = {:?}", last_elem, a);
+
+    while let Some(x) = a.pop() {
+        println!("{}", x);
+    }
+}
+
+pub fn hash_maps() {
+    let mut shapes = HashMap::new();
+    shapes.insert(String::from("triangle"), 3);
+    shapes.insert(String::from("square"), 4);
+
+    println!("a square has {} sides", shapes["square".into()]);
+
+    for (key, value) in &shapes {
+        println!("{}: {}", key, value);
+    }
+    shapes.insert("square".into(), 5);
+    println!("{:?}", shapes);
+    shapes.entry("circle".into()).or_insert(1);
+    {
+        let actual = shapes.entry(
+            "circle".into()
+        ).or_insert(2);
+        *actual = 0;
+    }
+    println!("{:?}", shapes);
 }
