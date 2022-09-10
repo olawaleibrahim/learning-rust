@@ -1,23 +1,23 @@
-fn how_many(no:i32) -> &'static str {
-    match no {
+fn how_many(x: i32) -> &'static str {
+    match x {
         0 => "no",
-        1 => "one",
-        2 | 3  => "2 or three",
-        z @ 4..=7 => "a few",
-        12 => "dozen",
-        _ if (no % 2 == 0) => "some",
-        _ => "a lot of",
+        1 | 2 => "one or two",
+        12 => "a dozen",
+        z @ 9..=11 => "lots of oranges",
+        _ if (x % 2 == 0) => "some",
+        _ => "a few",
     }
 }
+
 pub fn pattern_matching() {
-    for x in 0..13 {
-        println!("{}: I have {} oranges", x, how_many(x));
+    for i in 0..13 {
+        println!("{}: I have {} oranges", i, how_many(i));
     }
-    let point = (0, 4);
+    let point = (2, 9);
     match point {
-        (0, 0) => println!("point is at origin"),
-        (0, y) => println!("point is on x origin, at y = {}", y),
-        (x, 0) => println!("point is on y origin, at y = {}", x),
-        (x, y) => println!("point is at position ({},{})", x, y),
+        (0,0) => println!("origin"),
+        (0,y) => println!("x axis, y = {}", y),
+        (x,0) => println!("y axis, x = {}", x),
+        (_,y) => println!("?,{}",y),
     }
 }
