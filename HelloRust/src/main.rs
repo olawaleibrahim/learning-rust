@@ -92,6 +92,7 @@ fn main() {
     data_structures::generics();
     data_structures::vectors();
     data_structures::hash_maps();
+    data_structures::hash_sets();
     //pm::pattern_matching();
 
 }
