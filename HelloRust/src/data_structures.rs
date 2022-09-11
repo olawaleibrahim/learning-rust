@@ -276,3 +276,14 @@ pub fn hash_sets() {
     // union, intersection
     println!("items in either {:?} and {:?} are {:?}", _2_8, _6_10, _2_8.union(&_6_10));
 }
+
+pub fn iterators() {
+    let mut vec = vec![3, 2, 1];
+    for x in vec.iter_mut() {
+        *x += 2
+    }
+    println!("vec = {:?}", vec);
+    let mut vec2 = vec![1, 2, 3];
+    vec2.extend(vec);
+    println!("vec2 = {:?}", vec2);
+}

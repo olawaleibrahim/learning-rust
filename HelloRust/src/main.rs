@@ -7,6 +7,7 @@ mod conditionals;
 mod matching;
 mod data_structures;
 mod pm;
+mod strings;
 
 use std::mem;
 
@@ -73,8 +74,8 @@ fn main() {
     let d:char = 'x';
     // print!("{} is a char, size = {} bytes", d, mem::size_of_val(&d));
 
-    let mut g: bool = false;
-    g = true;
+    // let mut g: bool = false;
+    // g = true;
 
     // modules
     // sh::stack_and_heap();
@@ -89,10 +90,12 @@ fn main() {
     // data_structures::arrays();
     // data_structures::slices();
     // data_structures::tuples();
-    data_structures::generics();
-    data_structures::vectors();
-    data_structures::hash_maps();
-    data_structures::hash_sets();
+    // data_structures::generics();
+    // data_structures::vectors();
+    // data_structures::hash_maps();
+    // data_structures::hash_sets();
+    // data_structures::iterators();
     //pm::pattern_matching();
+    strings::strings();
 
 }
