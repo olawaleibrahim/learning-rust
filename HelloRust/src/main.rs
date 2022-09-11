@@ -102,5 +102,6 @@ fn main() {
     // guessing_game::number_guessing();
     functions::user_functions();
     functions::methods();
+    functions::closures();
 
 }
