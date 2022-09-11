@@ -9,6 +9,7 @@ mod data_structures;
 mod pm;
 mod strings;
 mod guessing_game;
+mod functions;
 
 use std::mem;
 
@@ -98,6 +99,8 @@ fn main() {
     // data_structures::iterators();
     //pm::pattern_matching();
     strings::strings();
-    guessing_game::number_guessing();
+    // guessing_game::number_guessing();
+    functions::user_functions();
+    functions::methods();
 
 }
