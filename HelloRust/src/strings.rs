@@ -35,4 +35,21 @@ pub fn strings() {
     abc.push_str("!!!");
     let goodbye = "goodbye";
     println!("string = {}", abc.replace("ello", goodbye));
+
+    // string formatting
+    let name = "Wale";
+    let greeting = format!("hi, I'm {}, nice to meet you", name);
+    println!("{}", greeting);
+
+    let hello = "hello";
+    let rust = "rust";
+    let hello_rust = format!("{}, {}", hello, rust);
+    println!("{}", hello_rust);
+
+    let run = "run";
+    let rwr = format!("{0}, {1} {0}!", run, name);
+    println!("{}", rwr);
+
+    let mixed = format!("{1} {} {0} {} {data}", "alpha", "beta", data="delta"); //beta alpha alpha beta delta
+    println!("{}", mixed);
 }
