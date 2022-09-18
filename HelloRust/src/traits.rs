@@ -85,6 +85,19 @@ fn print_info<T>(shape: T) where T: Shape + Debug{
     println!("The area is {}", shape.area())
 }
 
+struct Person {
+    name: String
+}
+
+impl Person {
+    // fn new(name: &str) -> Person {
+    //     Person{name: name.to_string()}
+    // }
+    fn new<S: Into<String>>(name: S) -> Person {
+        Person { name: name.into() }
+    }
+}
+
 pub fn traits() {
     // let h = Human{name:"John"};
     let h = Human::create("John");
@@ -92,11 +105,15 @@ pub fn traits() {
     let h1: Human = Animal::create("John Samuel");
     h1.talk();
     let c = Cat{name:"Misty"};
-    c.talk();
-
+    // c.talk();
+    //
     let a = vec![1,2,3];
     println!("sum = {}", a.sum());
 
     let c = Circle{radius: 3.0};
     print_info(c);
+
+    let john = Person::new("Olawale");
+    let name = "Jane".to_string();
+    let jane = Person::new(name/*.as_ref()*/);
 }
