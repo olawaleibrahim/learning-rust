@@ -10,6 +10,7 @@ mod pm;
 mod strings;
 mod guessing_game;
 mod functions;
+mod traits;
 
 use std::mem;
 
@@ -62,9 +63,9 @@ fn main() {
     // println!("value of b after is: {}", b);
 
     let mut c = 123456789; // i32
-    // println!("c = {}, takes up {} bytes", c, mem::size_of_val(&c));
+    println!("c = {}, takes up {} bytes", c, mem::size_of_val(&c));
     c = -1;
-    // println!("c = {}, takes up {} bytes", c, mem::size_of_val(&c));
+    println!("c = {}, takes up {} bytes", c, mem::size_of_val(&c));
 
     let z: isize = 123;
     let size_of_z = mem::size_of_val(&z);
@@ -97,12 +98,13 @@ fn main() {
     // data_structures::hash_maps();
     // data_structures::hash_sets();
     // data_structures::iterators();
-    //pm::pattern_matching();
-    strings::strings();
+    // pm::pattern_matching();
+    // strings::strings();
     // guessing_game::number_guessing();
-    functions::user_functions();
-    functions::methods();
-    functions::closures();
+    // functions::user_functions();
+    // functions::methods();
+    // functions::closures();
     functions::higher_order();
+    traits::traits();
 
 }
