@@ -103,5 +103,6 @@ fn main() {
     functions::user_functions();
     functions::methods();
     functions::closures();
+    functions::higher_order();
 
 }
