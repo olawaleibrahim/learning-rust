@@ -116,7 +116,7 @@ impl Drop for Creature {
     }
 }
 
-#[derive(Debug, Ord, PartialOrd, Eq, PartialEq)]
+// #[derive(Debug, Ord, PartialOrd, Eq, PartialEq)]
 struct Complex<T> {
     re: T,
     im: T
@@ -170,6 +170,11 @@ impl<T> PartialEq for Complex<T>
     }
 }
 
+enum Creatures {
+    Human(Human),
+    Cat(Cat)
+}
+
 pub fn traits() {
     // let h = Human{name:"John"};
     let h = Human::create("John");
@@ -178,6 +183,34 @@ pub fn traits() {
     h1.talk();
     let c = Cat{name:"Misty"};
     // c.talk();
+
+    let mut creatures = Vec::new();
+    // creatures.push(Human{name: "Olawale"});
+    // creatures.push(Cat{name: "Fluffy"});
+    creatures.push(Creatures::Human(
+        Human { name: "Olawale" }
+    ));
+    creatures.push(Creatures::Cat(
+        Cat { name: "Fluffy" }
+    ));
+    for c in creatures {
+        match c {
+            Creatures::Human(h) => h.talk(),
+            Creatures::Cat(c) => c.talk()
+        }
+    }
+
+    // using box for multi type vector
+    let mut animals:Vec<Box<dyn Animal>> = Vec::new();
+    animals.push(
+        Box::new(Human{name:"Olawale"})
+    );
+    animals.push(
+        Box::new(Cat{name:"Fluffy"})
+    );
+    for a in animals.iter() {
+        a.talk();
+    }
     //
     let a = vec![1,2,3];
     println!("sum = {}", a.sum());
