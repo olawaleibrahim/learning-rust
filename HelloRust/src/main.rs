@@ -2,6 +2,8 @@
 #![allow(unused_variables)]
 #![allow(unused_imports)]
 
+extern crate core;
+
 mod sh;
 mod conditionals;
 mod matching;
