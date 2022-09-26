@@ -201,12 +201,12 @@ pub fn traits() {
     }
 
     // using box for multi type vector
-    let mut animals:Vec<Box<dyn Animal>> = Vec::new();
+    let mut animals= Vec::new();
     animals.push(
         Box::new(Human{name:"Olawale"})
     );
     animals.push(
-        Box::new(Cat{name:"Fluffy"})
+        Box::new(Human{name:"Fluffy"})
     );
     for a in animals.iter() {
         a.talk();

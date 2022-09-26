@@ -14,6 +14,7 @@ mod guessing_game;
 mod functions;
 mod traits;
 mod dispatch;
+mod memory;
 
 use std::mem;
 
@@ -109,6 +110,7 @@ fn main() {
     // functions::closures();
     functions::higher_order();
     traits::traits();
+    memory::results();
     // dispatch::results();
 
 }
