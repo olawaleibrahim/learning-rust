@@ -1,4 +1,6 @@
 use std::rc::Rc;
+use std::thread;
+use std::sync::Arc;
 
 fn ownership() {
     let v = vec![1, 2, 3];
@@ -34,7 +36,7 @@ fn borrowing() {
 }
 
 struct Person {
-    name: Rc<String>
+    name: Arc<String>
 }
 
 struct Person1<'v> {
@@ -53,7 +55,7 @@ impl Person {
         &self.name
     }
 
-    fn new(name: Rc<String>) -> Person {
+    fn new(name: Arc<String>) -> Person {
         Person {name: name}
     }
 
@@ -72,7 +74,7 @@ fn lifetime() {
     // let tesla = Company {name: String::from("Tesla"), ceo: &boss};
 
     let mut z: &String;
-    let p = Person {name: Rc::new(String::from("John"))};
+    let p = Person {name: Arc::new(String::from("John"))};
     z = p.get_ref_name();
     println!("z = {}", z);
 
@@ -81,16 +83,28 @@ fn lifetime() {
 }
 
 fn rc_demo(){
-    let name = Rc::new("Jon".to_string());
-    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    let name = Arc::new("Jon".to_string());
+    println!("Name = {}, name has {} strong pointers", name, Arc::strong_count(&name));
     {
         let person = Person::new(name.clone());
-        println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+        println!("Name = {}, name has {} strong pointers", name, Arc::strong_count(&name));
 
         person.greet();
     }
-    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    println!("Name = {}, name has {} strong pointers", name, Arc::strong_count(&name));
     println!("Name = {}", name);
+}
+
+fn arc_demo() {
+    let name = Arc::new("Johnny".to_string());
+    let person = Person::new(name.clone());
+
+    let t = thread::spawn(move || {
+        person.greet();
+    });
+    println!("Name = {}", name);
+
+    t.join().unwrap();
 }
 
 pub fn results() {
@@ -98,4 +112,5 @@ pub fn results() {
     borrowing();
     lifetime();
     rc_demo();
+    arc_demo();
 }
