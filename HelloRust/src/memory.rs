@@ -31,7 +31,47 @@ fn borrowing() {
     }
 }
 
+struct Person {
+    name: String
+}
+
+struct Person1<'v> {
+    name: &'v str
+}
+
+impl<'v> Person1<'v> {
+
+    fn talk(&self) {
+        println!("My name is {}", &self.name)
+    }
+}
+
+impl Person {
+    fn get_ref_name(&self) -> &String {
+        &self.name
+    }
+}
+
+struct Company<'z> {
+    name: String,
+    ceo: &'z Person
+}
+
+fn lifetime() {
+    // let boss = Person {name: String::from("Elon Musk")};
+    // let tesla = Company {name: String::from("Tesla"), ceo: &boss};
+
+    let mut z: &String;
+    let p = Person {name: String::from("John")};
+    z = p.get_ref_name();
+    println!("z = {}", z);
+
+    let p1 = Person1 {name: "John Doe"};
+    p1.talk();
+}
+
 pub fn results() {
     ownership();
     borrowing();
+    lifetime();
 }
