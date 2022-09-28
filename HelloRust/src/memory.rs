@@ -1,3 +1,5 @@
+use std::rc::Rc;
+
 fn ownership() {
     let v = vec![1, 2, 3];
 
@@ -32,7 +34,7 @@ fn borrowing() {
 }
 
 struct Person {
-    name: String
+    name: Rc<String>
 }
 
 struct Person1<'v> {
@@ -50,6 +52,14 @@ impl Person {
     fn get_ref_name(&self) -> &String {
         &self.name
     }
+
+    fn new(name: Rc<String>) -> Person {
+        Person {name: name}
+    }
+
+    fn greet(&self) {
+        println!("Hi, my name is {}", self.name);
+    }
 }
 
 struct Company<'z> {
@@ -62,7 +72,7 @@ fn lifetime() {
     // let tesla = Company {name: String::from("Tesla"), ceo: &boss};
 
     let mut z: &String;
-    let p = Person {name: String::from("John")};
+    let p = Person {name: Rc::new(String::from("John"))};
     z = p.get_ref_name();
     println!("z = {}", z);
 
@@ -70,8 +80,22 @@ fn lifetime() {
     p1.talk();
 }
 
+fn rc_demo(){
+    let name = Rc::new("Jon".to_string());
+    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    {
+        let person = Person::new(name.clone());
+        println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+
+        person.greet();
+    }
+    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    println!("Name = {}", name);
+}
+
 pub fn results() {
     ownership();
     borrowing();
     lifetime();
+    rc_demo();
 }
