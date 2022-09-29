@@ -112,6 +112,7 @@ fn main() {
     functions::higher_order();
     traits::traits();
     memory::results();
+    circular_references::results();
     // dispatch::results();
 
 }

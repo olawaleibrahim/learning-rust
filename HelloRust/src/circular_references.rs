@@ -1,42 +1,63 @@
-struct Student<'a> {
-    name: String,
-    courses: Vec<&'a Course<'a>>
+struct Student {
+    name: String
 }
 
-impl<'a> Student<'a> {
-    fn new(name: &str) -> Student<'a> {
-        Student{
-            name: name.into(),
-            courses: Vec::new()
+impl Student {
+    fn courses(&self, platform: Platform) -> Vec<String> {
+        platform.enrollments.iter().filter(
+            |&e| e.student.name == self.name
+        ).map(
+            |e| e.course.name.clone()
+        ).collect()
+    }
+}
+
+struct Course {
+    name: String
+}
+
+struct Enrollment<'a> {
+    student: &'a Student,
+    course: &'a Course  // student and course should have the same lifetime
+}
+
+impl<'a> Enrollment<'a> {
+    fn new(student: &'a Student, course: &'a Course) -> Enrollment<'a> {
+        Enrollment {student, course}
+    }
+}
+
+struct Platform<'a> {
+    enrollments: Vec<Enrollment<'a>>
+}
+
+impl<'a> Platform<'a> {
+    fn new() -> Platform<'a> {
+        Platform {
+            enrollments: Vec::new()
         }
     }
-}
 
-struct Course<'a> {
-    name: String,
-    students: Vec<&'a Student<'a>>
-}
-
-impl<'a> Course<'a> {
-    fn new(name: &str) -> Course<'a> {
-        Course {
-            name: name.into(),
-            students: Vec::new()
-        }
+    fn enroll(&mut self,
+              student: &'a Student,
+              course: &'a Course
+    ) {
+        self.enrollments.push(
+            Enrollment::new(student, course)
+        )
     }
-
-    fn add_student(&'a mut self,
-        student: &'a mut Student<'a>) {
-        student.courses.push(self);
-        self.students.push(student);
-        // RefCell
-    }
-    
 }
 
 pub fn results() {
-    let john = Student::new("John");
-    let course = Course::new("Rust Course");
+    let student = Student{name: "Olawale".into()};
+    let course = Course { name: "Intro to Rust".into() };
+    let course2 = Course { name: "Machine learning with Rust".into() };
 
-    course.add_student(john)
+    let mut p = Platform::new();
+    p.enroll(&student, &course);
+    p.enroll(&student, &course2);
+
+    for c in student.courses(p) {
+        println!("{} is taking {}", student.name, c);
+    }
 }
