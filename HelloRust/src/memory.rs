@@ -1,3 +1,4 @@
+use std::time;
 use std::rc::Rc;
 use std::thread;
 use std::sync::Arc;
@@ -107,10 +108,26 @@ fn arc_demo() {
     t.join().unwrap();
 }
 
+fn concurrency() {
+    let handle = thread::spawn(|| {
+        for _ in 1..10 {
+            println!("+");
+            thread::sleep(time::Duration::from_millis(500));
+        }
+    });
+    for _ in 1..10 {
+        println!("---");
+        thread::sleep(time::Duration::from_millis(300));
+    }
+
+    handle.join();
+}
+
 pub fn results() {
     ownership();
     borrowing();
     lifetime();
     rc_demo();
     arc_demo();
+    concurrency();
 }
