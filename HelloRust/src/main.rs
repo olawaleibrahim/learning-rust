@@ -15,6 +15,7 @@ mod functions;
 mod traits;
 mod dispatch;
 mod memory;
+mod circular_references;
 
 use std::mem;
 
